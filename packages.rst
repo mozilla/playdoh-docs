@@ -127,7 +127,7 @@ Done. Try ``./manage.py shell`` and then ``import cheeseballs`` to make sure
 it worked.
 
 Testing Your Vendor Change
----------------
+--------------------------
 It's critical that you test your app running under mod_wsgi. Although you
 may use runserver day to day, go ahead and run some code through WSGI to 
 prove vendor is setup properly. (throw an import into your view, etc)
