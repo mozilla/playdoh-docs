@@ -1,9 +1,14 @@
+.. _libs:
+
 =========
 Libraries
 =========
 
 There are a number of libraries that either come bundled with playdoh or are
-otherwise useful for it.
+otherwise useful for it. The list is incomplete.
+
+For a full list of enhancements enabled by default, check out the
+:ref:`feature list <features>`.
 
 **Note:** Libraries marked with an \*asterisk\* are bundled with playdoh by default. 
 
@@ -61,7 +66,7 @@ Mozilla
 
 * `django-moz-header <https://github.com/mozilla/django-moz-header>`_:
   Common header/footer templates and CSS for Django-based Mozilla sites.
-* `django-mozilla-product-details <http://github.com/fwenzel/django-mozilla-product-details>`_:
+* `django-mozilla-product-details <http://github.com/fwenzel/django-mozilla-product-details>`_\*:
   Pulls Mozilla product details library data from SVN and makes it available
   as Python dictionaries.
 
