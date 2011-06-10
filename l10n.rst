@@ -18,78 +18,116 @@ The one set of low level tools not provided is gettext.
     brew install gettext
 
 
-Environment Setup
------------------
+Testing It Out, Right Now
+-------------------------
 
-Your top level directory named locale should be an SVN repository. This is
-because localizers are used to SVN and some tools like Pootle tie into it.
-Developers who never deal with L10n do not need to worry about this kind of
-setup. It's often easier to have a L10n dev setup, which a cron job updates
-the sources, updates the strings, and compiles the po files and lastly
-commiting to SVN.
+Playdoh comes with a sample app called ``examples`` which is also localized into 
+French.  This is so that you can get the hang of how things work out of the 
+box.  To get started, simply follow these quick steps:
 
-
-Initial Steps
--------------
-
-To allow localizers to translate your app on localize.mozilla.org, your .po
-files need to be in SVN. You want a checkout of your locale directory to live
-inside the git checkout under ``locale``.
-
-The following steps will get you started:
-
-#.  Create an SVN repository with locale-based directories and ``templates``.
-    You need at least::
-
-        ./en_US
-        ./en_US/LC_MESSAGES
-        ./templates
-        ./templates/LC_MESSAGES
-
-#.  Check out this SVN repository inside your project path::
-
-        cd /my/playdoh/project/dir/
-        svn checkout https://svn.mozilla.org/projects/something/trunk/locale locale
-
-        ## If you don't like svn, you may use git-svn too:
-        # git svn clone https://svn.mozilla.org/projects/something/trunk/locale locale
-
-#.  Now extract strings from your project::
-
-        ./manage.py extract
-        ./manage.py merge
-
-#.  Commit it all.
-
-#.  Build your .mo files and commit those as well::
-
-        ./bin/compile-mo.sh locale/
-        cd locale
-        git add .
-        git commit -m 'Built .mo files'
+#. ``./bin/compile-mo.sh locale/``
+#. Set ``DEV=True`` in ``settings_local.py``
+#. ``./manage.py runserver``
+#. Point your browser to ``http://127.0.0.1:8000/fr``
 
 
 Extracting Strings
 ------------------
 
-If you've developed a feature and changed or added strings, you need to extract
-them and merge them into the existing .po files::
+You can easily test the localization while you're working on new features or 
+when you add or change strings. You need to extract them and merge them into 
+the existing .po files::
 
     ./manage.py extract
     ./manage.py merge
+    ./bin/compile-mo.sh locale/
 
-Optionally compile all .mo files::
+
+Going big
+---------
+
+When the site is ready for localization (i.e. is string-frozen), you will want 
+to move away from the sample setup provided by default by Playdoh.  The PO 
+files that localizers work on are usually kept in an SVN repository.  Hence, 
+your top level directory named ``locale`` should be a working copy of that SVN 
+repository.  This way, the localizers will be familiar with the process and 
+tools like Verbatim can tap into it, too.
+
+
+Setting Up The SVN Repository
+-----------------------------
+
+To allow localizers to translate your app on http://localize.mozilla.org, your 
+PO files need to be in SVN.  You want a checkout of your locale directory to 
+live inside the git checkout under ``locale``.  Read on to see how to reuse the 
+existing ``locale`` directory (remove it from git's index, add it to SVN).
+
+You will need an upstream empty SVN repository where locale-based directories 
+will live.  IT can help you with this, or you can choose to use a subdirectory 
+in https://svn.mozilla.org/projects/l10n-misc/trunk/.
+
+Once this is done, follow the steps below.
+
+#.  Extract the strings (see above)::
+
+        cd /my/playdoh/project/dir/
+        ./manage.py extract
+        ./manage.py merge
+
+#.  Remove the existing ``locale`` directory from git's index::
+
+        git rm --cached -r locale/
+
+#.  Add ``locale/*`` to ``.gitignore``::
+
+        echo "locale/*" >> .gitignore
+
+#.  Modify the value of ``LOCALE_REPO_URL`` in ``bin/update_site.py`` so that it 
+    contains the URL of the SVN repository::
+
+        LOCALE_REPO_URL = 'https://svn.mozilla.org/projects/.../locale'
+
+#.  Commit the changes to git::
+
+        git add .gitignore bin/update_site.py
+        git commit -m "Use an SVN repo for locale"
+
+#.  Check out the SVN repository inside of your project::
+
+        svn checkout --force https://svn.mozilla.org/projects/.../locale locale
+
+    If you don't like svn, you may use git-svn too::
+
+        git svn clone https://svn.mozilla.org/projects/.../locale locale
+
+#.  Commit the files that previously were in the ``locale`` directory managed 
+    by git to the new SVN repository::
+
+        cd locale
+        svn add . && svn commit
+
+Optionally, you can compile all MO files to be able to test::
 
     ./bin/compile-mo.sh locale/
+
+Keep in mind that you *don't need to commit the MO files to SVN*.  The 
+``bin/update_site.py`` will take care of the compilation step for you.
 
 
 Creating New Locales
 --------------------
 
+The best approach is to use Verbatim's admin panel and create the new locale 
+from there.
+
+If this is not available to you, follow the steps below.  This requires that 
+you have proper langpacks installed on your system (check with ``locale -a``). 
 Assuming you want to add 'fr':
 
+#.  ``svn up locale``
 #.  ``mkdir -p locale/fr/LC_MESSAGES``
 #.  ``./manage.py merge``
+#.  ``cd locale; svn add fr && svn commit fr``
 
 or
 
@@ -110,26 +148,11 @@ Advanced Steps
         git commit -am 'did something'
         git svn dcommit && git push origin HEAD
 
-#.  localize.mozilla.org does not automatically compile .mo files when a
-    localizer commits to SVN. Neither does it automate the push over to
-    git. There's a handy little script called ``autol10n`` that you can
-    run as a cron job somewhere, which will:
-
-    * pick up changed .po files from SVN,
-    * compile the .mo files,
-    * then (if necessary) push everything over to git...
-    * ... and retag the git submodule to the latest revision.
-
-    The script is available in playdoh under ``bin/autol10n.sh``.
-
 
 Q&A
 ---
 
 * *Why SVN?* Our localizers like to use either SVN or Verbatim.
-* *Why a git repo to mirror an SVN repo?* This allows us to have an external
-  reference ("git submodule") and deploy the app including its translations
-  easily.
-* *How do I use gettext?* In templates we use jinja_
+* *How do I use gettext?* In templates we use jinja_.
 
 .. _jinja: http://jinja.pocoo.org/docs/templates/#i18n
