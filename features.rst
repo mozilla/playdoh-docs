@@ -47,6 +47,8 @@ Security
   to minimize opportunities for XSS vulnerabilities. The ``|fe()`` helper is
   part of `jingo <https://github.com/jbalogh/jingo/>`_, and django_safeforms is
   a `nugget <https://github.com/mozilla/nuggets/>`_.
+* `bleach <https://github.com/jsocol/bleach/>`_ library bundled for
+  secure-by-default, but heavily customizable HTML sanitization of user input.
 
 .. _commonware: https://github.com/jsocol/commonware
 
