@@ -8,6 +8,8 @@ This page lists several best practices for writing secure web applications
 with playdoh.
 
 
+.. _safe:
+
 ``|safe`` considered harmful
 ----------------------------
 
@@ -56,6 +58,8 @@ following works as expected::
 
     {{ form.myfield }}
 
+
+.. _cookies:
 
 Mmmmh, Cookies
 --------------

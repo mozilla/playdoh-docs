@@ -40,9 +40,13 @@ Security
 * `Stronger password hashing <https://github.com/fwenzel/django-sha2>`_ for
   Django's built-in auth system. Default: *sha512*. Recommendation:
   *bcrypt + HMAC*.
-* ``secure=True`` and ``httponly=True`` enabled by default on all cookies set
-  through django's cookie facility, opt-out possible by cookie. (part of
-  commonware_)
+* ``secure=True`` and ``httponly=True`` :ref:`enabled by default <cookies>`
+  on all cookies set through django's cookie facility, opt-out possible by
+  cookie. (part of commonware_).
+* Greatly reduced the need for the use of :ref:`|safe <safe>` in templates,
+  to minimize opportunities for XSS vulnerabilities. The ``|fe()`` helper is
+  part of `jingo <https://github.com/jbalogh/jingo/>`_, and django_safeforms is
+  a `nugget <https://github.com/mozilla/nuggets/>`_.
 
 .. _commonware: https://github.com/jsocol/commonware
 
