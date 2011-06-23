@@ -40,12 +40,12 @@ Contents
    :maxdepth: 1
 
    gettingstarted
-   libs
    features
+   libs
+   packages
    operations
    migrations
    l10n
-   packages
    docs
    bestpractices
 
