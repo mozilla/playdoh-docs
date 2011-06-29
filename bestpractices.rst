@@ -81,3 +81,49 @@ the ``set_cookie`` call, respectively::
     response.set_cookie('hello', value='world', secure=False, httponly=False)
 
 .. _set_cookie: http://docs.djangoproject.com/en/dev/ref/request-response/#django.http.HttpResponse.set_cookie
+
+
+Content Security Policy (CSP) compliance
+----------------------------------------
+
+**Content Security Policy** is a web-security-related `proposal`_ put forward
+by Mozilla Security. It is currently a `W3C working draft`_.
+
+Its primary goal is to **mitigate cross-site scripting (XSS) risk** by
+enforcing certain policies on a web site.
+
+While the proposal is still subject to change there are certain best practices
+that should be implemented today, because they prepare web applications for
+CSP compliance and should already be considered standard practices, even if a
+project does not enforce CSP yet:
+
+.. _proposal: https://wiki.mozilla.org/Security/CSP
+.. _W3C working draft: https://dvcs.w3.org/hg/content-security-policy/raw-file/tip/csp-specification.dev.html
+
+Avoid inline CSS and JS
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Avoid the use of inline CSS and JavaScript inside your HTML documents. This
+includes:
+
+Replace the following methods of writing **CSS** with a separate file:
+
+* ``<style>`` elements
+* ``style`` attributes on HTML elements
+
+Replace the following methods of writing **JavaScript** with a separate file:
+
+* ``<script>`` elements that wrap inline code
+* ``javascript:`` URIs
+* event-handling HTML attributes (like ``onclick``)
+
+Do not create code from strings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In JavaScript, never create **code from strings**, including calls to:
+
+* ``eval()``
+* ``new Function()`` constructor
+* ``setTimeout()`` called with a non-callable argument
+* ``setInterval()`` called with a non-callable argument
+
