@@ -47,6 +47,7 @@ Contents
    migrations
    l10n
    logging
+   errors
    docs
    bestpractices
 

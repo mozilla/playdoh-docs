@@ -10,7 +10,7 @@ otherwise useful for it. The list is incomplete.
 For a full list of enhancements enabled by default, check out the
 :ref:`feature list <features>`.
 
-**Note:** Libraries marked with an \*asterisk\* are bundled with playdoh by default. 
+**Note:** Libraries marked with an \*asterisk\* are bundled with playdoh by default.
 
 
 Python
@@ -39,6 +39,8 @@ Deployment
 
 * `django-waffle <https://github.com/jsocol/django-waffle>`_:
   A feature flipper for Django.
+* `django-arecibo <https://github.com/andymckay/django-arecibo>`_ \*:
+  Track the errors on your website in a database.
 
 Internationalization (i18n) and Localization (L10n)
 ---------------------------------------------------
