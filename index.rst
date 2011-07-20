@@ -50,6 +50,7 @@ Contents
    errors
    docs
    bestpractices
+   troubleshooting
 
 
 Indices and tables
