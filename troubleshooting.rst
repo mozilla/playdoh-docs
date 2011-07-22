@@ -2,21 +2,17 @@
 Troubleshooting
 ===============
 
-"Could not import settings"
+Python namespace collisions
 ---------------------------
 
-Example::
+When naming your top-level project (i.e., the directory you're checking
+your code out into), keep in mind that this will **become a Python module**,
+so name it accordingly.
 
-    Error: Could not import settings 'code.settings_local' (Is it on
-    sys.path?): No module named settings_local
-
-This is caused by namespace problems in Python's sys path.
-
-Make sure that your project directory is called differently than:
+Make sure that your project directory is called **differently than**:
 
 * any Python builtin (``code``, ``email``, ...)
-* any module on your Python path (such as ``testapp``, which is used by
-  django-nose)
+* any module on your Python path (such as ``nose``, ``celery``, ``redis``)
 * any app inside your ``apps`` directory (such as ``commons``, which is
   used by playdoh).
 
