@@ -49,6 +49,9 @@ Security
   a `nugget <https://github.com/mozilla/nuggets/>`_.
 * `bleach <https://github.com/jsocol/bleach/>`_ library bundled for
   secure-by-default, but heavily customizable HTML sanitization of user input.
+* Used `django-session-csrf <https://github.com/mozilla/django-session-csrf>`_
+  to replace Django's built-in, cookie-based CSRF method with a common,
+  session-based method. This mitigates the risk of cookie forging attacks.
 
 .. _commonware: https://github.com/jsocol/commonware
 

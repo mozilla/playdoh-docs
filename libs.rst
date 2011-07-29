@@ -81,6 +81,9 @@ Security and Data Sanitization
   Monkey-patches strong password hashing support into Django.
 * `happyforms <https://github.com/jbalogh/happyforms>`_:
   Extension to Django Forms that strips spaces.
+* `django-session-csrf <https://github.com/mozilla/django-session-csrf>`_\*:
+  Replaces Django's cookie-based CSRF method with a session-based one, in
+  order to mitigate certain cookie-forging attacks.
 
 Templates and Caching
 ---------------------

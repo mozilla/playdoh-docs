@@ -127,3 +127,45 @@ In JavaScript, never create **code from strings**, including calls to:
 * ``setTimeout()`` called with a non-callable argument
 * ``setInterval()`` called with a non-callable argument
 
+
+CSRF-protect your forms
+-----------------------
+
+Django comes with a built-in, cookie-based `CSRF protection
+<https://docs.djangoproject.com/en/dev/ref/contrib/csrf/>`_ facility. Sadly,
+the integrity of cookies can be compromised under certain circumstances
+(through Flash, or across subdomains on the same domain), so we replaced the
+CSRF method with a session-based method (as is common across web frameworks).
+
+To CSRF-protect a form for logged-in users, just add this to your template,
+inside the ``<form>`` tag::
+
+    {{ csrf() }}
+
+To make this work for anonymous users, with a light-weight session stored in
+Django's cache, decorate a view with ``@anonymous_csrf``:
+
+.. code-block:: python
+
+    from session_csrf import anonymous_csrf
+
+    @anonymous_csrf
+    def login(request):
+        ...
+
+If a form is supposed to be CSRF-protected for logged-in users, but not for
+anonymous users, use the ``@anonymous_csrf_exempt`` decorator:
+
+.. code-block:: python
+
+    from session_csrf import anonymous_csrf_exempt
+
+    @anonymous_csrf_exempt
+    def protected_in_another_way(request):
+        ...
+
+Finally, to disable CSRF protection on a form altogether (if you know what
+you're doing!), Django's ``csrf_exempt`` decorator still works as expected.
+
+To learn more about this method, refer to the
+`django-session-csrf README <https://github.com/mozilla/django-session-csrf#readme>`_.
