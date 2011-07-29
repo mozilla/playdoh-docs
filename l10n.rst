@@ -1,29 +1,36 @@
+.. _l10n:
+
+===================
 Localization (L10n)
 ===================
 
-So you'd like to localize your webapp. **Congratulations!**
+Playdoh comes with all the libraries and tools you will need in production
+or development for localization.
 
-Playdoh comes with all of the libraries and tools you need in the dev and
-production requirements.
+Localization works by searching for localizable text in your source code and
+extracting (or merging them) into `.po` files in `locale/`.
+
 
 Requirements
 ------------
 
-The one set of low level tools not provided is gettext.
+The one set of low level tools not provided is ``gettext``.
 
 ::
 
+    # for ubuntu/debian
     aptitude install gettext
-    # or
+
+    # for mac
     brew install gettext
 
 
 Testing It Out, Right Now
 -------------------------
 
-Playdoh comes with a sample app called ``examples`` which is also localized into 
-French.  This is so that you can get the hang of how things work out of the 
-box.  To get started, simply follow these quick steps:
+Playdoh comes with a sample app called ``examples`` which is also localized
+into French.  This is so that you can get the hang of how things work out of
+the box.  To get started, simply follow these quick steps:
 
 #. ``./bin/compile-mo.sh locale/``
 #. Set ``DEV=True`` in ``settings_local.py``
@@ -31,128 +38,84 @@ box.  To get started, simply follow these quick steps:
 #. Point your browser to ``http://127.0.0.1:8000/fr``
 
 
-Extracting Strings
-------------------
+Installation
+------------
 
-You can easily test the localization while you're working on new features or 
-when you add or change strings. You need to extract them and merge them into 
-the existing .po files::
+If you don't have any localization you need to do the following:
+
+#. ``./manage.py extract -c``
+#. ``./manage.py merge -c``
+
+This will populate your ``locale/`` directory.
+
+
+Usage
+-----
+
+Once your directories are set up you'll need to tend to your strings and their
+localization.
+
+Strings
+~~~~~~~
+
+You can localize strings both in python code as well as Jinja templates.
+
+.. highlight:: python
+
+In python::
+
+  from tower import ugettext as _, ugettext_lazy as _lazy
+
+  yodawg = _lazy('The Internet')
+
+  def myview(request):
+      return render('template.html', {msg=_('Hello World'), msg2=yodawg})
+
+.. highlight:: jinja
+
+``_lazy`` is used when we are not in scope of a request.  This lets us evaluate
+a string, such as ``yodawg``, at the last possible second when we finally can
+draw upon the request's context.  E.g. in a template::
+
+    {{ msg2 }}
+
+Will be evaluated to whatever ``The Internet`` is in the requester's locale.
+
+
+In Jinja we can use the following syntax for localized strings::
+
+
+    <h1>{{ _('Hello') }}</h1>
+
+    {% trans link='http://mozilla.org' %}
+    <p>Go to this <a href="{{ link }}">site</a>.</p>
+    {% endtrans %}
+
+
+Updating our strings
+~~~~~~~~~~~~~~~~~~~~
+
+If you make changes to your strings you can update them::
 
     ./manage.py extract
     ./manage.py merge
-    ./bin/compile-mo.sh locale/
+
+Note: you do not need ``-c`` for either command if you've created the required
+directories.
 
 
-Going big
----------
-
-When the site is ready for localization (i.e. is string-frozen), you will want 
-to move away from the sample setup provided by default by Playdoh.  The PO 
-files that localizers work on are usually kept in an SVN repository.  Hence, 
-your top level directory named ``locale`` should be a working copy of that SVN 
-repository.  This way, the localizers will be familiar with the process and 
-tools like Verbatim can tap into it, too.
-
-
-Setting Up The SVN Repository
------------------------------
-
-To allow localizers to translate your app on http://localize.mozilla.org, your 
-PO files need to be in SVN.  You want a checkout of your locale directory to 
-live inside the git checkout under ``locale``.  Read on to see how to reuse the 
-existing ``locale`` directory (remove it from git's index, add it to SVN).
-
-You will need an upstream empty SVN repository where locale-based directories 
-will live.  IT can help you with this, or you can choose to use a subdirectory 
-in https://svn.mozilla.org/projects/l10n-misc/trunk/.
-
-Once this is done, follow the steps below.
-
-#.  Extract the strings (see above)::
-
-        cd /my/playdoh/project/dir/
-        ./manage.py extract
-        ./manage.py merge
-
-#.  Remove the existing ``locale`` directory from git's index::
-
-        git rm --cached -r locale/
-
-#.  Add ``locale/*`` to ``.gitignore``::
-
-        echo "locale/*" >> .gitignore
-
-#.  Modify the value of ``LOCALE_REPO_URL`` in ``bin/update_site.py`` so that it 
-    contains the URL of the SVN repository::
-
-        LOCALE_REPO_URL = 'https://svn.mozilla.org/projects/.../locale'
-
-#.  Commit the changes to git::
-
-        git add .gitignore bin/update_site.py
-        git commit -m "Use an SVN repo for locale"
-
-#.  Check out the SVN repository inside of your project::
-
-        svn checkout --force https://svn.mozilla.org/projects/.../locale locale
-
-    If you don't like svn, you may use git-svn too::
-
-        git svn clone https://svn.mozilla.org/projects/.../locale locale
-
-#.  Commit the files that previously were in the ``locale`` directory managed 
-    by git to the new SVN repository::
-
-        cd locale
-        svn add . && svn commit
-
-Optionally, you can compile all MO files to be able to test::
+If you want to see these changes in your project::
 
     ./bin/compile-mo.sh locale/
 
-Keep in mind that you *don't need to commit the MO files to SVN*.  The 
-``bin/update_site.py`` will take care of the compilation step for you.
+
+.. highlight:: python
 
 
 Creating New Locales
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
-The best approach is to use Verbatim's admin panel and create the new locale 
-from there.
+In your projects ``settings.py`` add the new locale to ``KNOWN_LANGUAGES``.
 
-If this is not available to you, follow the steps below.  This requires that 
-you have proper langpacks installed on your system (check with ``locale -a``). 
-Assuming you want to add 'fr':
-
-#.  ``svn up locale``
-#.  ``mkdir -p locale/fr/LC_MESSAGES``
-#.  ``./manage.py merge``
-#.  ``cd locale; svn add fr && svn commit fr``
-
-or
-
-#.  ``msginit --no-translator -l fr -i templates/LC_MESSAGES/messages.pot -o fr/LC_MESSAGES/messages.po``
-#.  repeat for other POT files
-
-
-Advanced Steps
---------------
-
-#.  Some projects keep a copy of the SVN checkout in git. When doing that,
-    keep in mind that ``git svn dcommit`` will change the commit message,
-    thus changing the git commit ID. Therefore, always commit to SVN first,
-    then push to git, never vice-versa::
-
-        cd locale/
-        # do something
-        git commit -am 'did something'
-        git svn dcommit && git push origin HEAD
-
-
-Q&A
----
-
-* *Why SVN?* Our localizers like to use either SVN or Verbatim.
-* *How do I use gettext?* In templates we use jinja_.
-
-.. _jinja: http://jinja.pocoo.org/docs/templates/#i18n
+Then run ``./manage.py merge -c`` which will create directories for any locales
+that are missing in ``/locale``.
