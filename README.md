@@ -7,6 +7,8 @@ To read these docs, go to http://playdoh.rtfd.org .
 
 Patches are welcome! Feel free to fork and contribute to this project.
 
+[gh-playdoh]: https://github.com/mozilla/playdoh
+
 
 License
 -------
