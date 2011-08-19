@@ -49,6 +49,7 @@ Contents
    logging
    errors
    docs
+   upgrading
    bestpractices
    troubleshooting
 
