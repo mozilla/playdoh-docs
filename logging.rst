@@ -6,6 +6,20 @@ Logging
 
 Logging is a great way to track what is going on with your app.
 
+This makes it easier for other developers to debug what's going on without
+resorting to ``print`` statements or ``pdb`` calls.  It also makes it easier to
+diagnose failures in production.
+
+Playdoh supports logging out of the box.
+
+.. note::
+
+   This is similar to `Django Logging`_, but we make it easier to setup loggers
+   and handlers.
+
+.. _Django Logging: https://docs.djangoproject.com/en/dev/topics/logging/
+
+
 How to log
 ----------
 
@@ -13,6 +27,8 @@ Logging is provided via `commonware`_.
 
 Within our webapps we typically use a small namespace prefix for logging::
 
+    m: mozillians
+    k: kitsune
     i: input
     z: zamboni
 
@@ -33,6 +49,7 @@ be made.
 In development this shows up as standard output.
 
 .. _commonware: https://github.com/jsocol/commonware
+
 
 Silence Logging
 ---------------
