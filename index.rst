@@ -7,12 +7,18 @@ Welcome to playdoh's documentation!
 Patches are welcome! Feel free to fork and contribute to this project on
 Github_.
 
+.. note::
+
+    You can upgrade any Django app to be a playdoh app by installing
+    :ref:`Funfactory<upgrading-via-funfactory>`.
+
 .. _Django: http://www.djangoproject.com/
 .. _Github: https://github.com/mozilla/playdoh
 
 
 Features
 --------
+
 Quick and dirty (and probably incomplete) feature list:
 
 * Rich, but "cherry-pickable" features out of the box:
@@ -21,6 +27,7 @@ Quick and dirty (and probably incomplete) feature list:
   * jinja2 template engine
   * Simple database migrations
   * Full localization support
+  * :doc:`logging`
   * ...
 
 * Secure by default:

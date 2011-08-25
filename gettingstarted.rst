@@ -65,4 +65,4 @@ Publishing your repo
 Upgrading
 ---------
 
-There is a :ref:`whole section <upgrading-playdoh>` on that!
+There is a :doc:`whole section <upgrading>` on that!
