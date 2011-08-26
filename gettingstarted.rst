@@ -1,6 +1,10 @@
 Getting started
 ===============
 
+.. seealso::
+
+    :ref:`upgrading-via-funfactory`
+
 Requirements
 ------------
 
