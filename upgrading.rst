@@ -21,13 +21,28 @@ Funfactorifying any Project
 
 Any app, even if it's not originally a playdoh fork can be "Funfacorified".
 
-1. Remove ``apps/commons`` if it came from playdoh.
-2. Add ``funfactory`` as an installed app.
-3. Add ``funfactory`` to the vendor library.
-4. Change manage.py to match playdoh's manage.py.
-5. In ``settings.py`` add to the top::
+#. Remove ``apps/commons`` if it came from playdoh.
+#. Add ``funfactory`` to the vendor library.
+#. Change manage.py to match playdoh's manage.py.
+#. In ``settings.py`` add to the top::
 
     from funfactory.settings import *
+
+#. In ``settings.py`` change::
+
+        INSTALLED_APPS = (...)
+
+   to::
+
+        INSTALLED_APPS = list(INSTALLED_APPS) + [ ... ]
+
+   Do the same for any other lists which have been customized.
+
+   You can remove any entries in ``INSTALLED_APPS`` from your ``settings.py``
+   if they are already in ``funfactory.settings_base.py``.
+
+#. You can remove any redundant settings in ``settings.py`` if they appear in
+   ``funfactory.settings_base.py``.
 
 
 Manual upgrade
