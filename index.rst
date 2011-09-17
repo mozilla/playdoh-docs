@@ -53,6 +53,7 @@ Contents
    operations
    migrations
    l10n
+   mobile
    logging
    errors
    template-context
