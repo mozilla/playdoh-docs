@@ -55,6 +55,7 @@ Contents
    l10n
    logging
    errors
+   template-context
    docs
    upgrading
    bestpractices
