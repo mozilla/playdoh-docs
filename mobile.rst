@@ -29,7 +29,11 @@ For frontend mobile strategies like media queries and other alternatives,
 check out `Approaches to Mobile Web Development`_ followed by `Part 2
 (Separate Sites)`_ and `Part 3 (Responsive Design)`_.
 
+To develop mobile sites you can simulate various headers using the
+`User Agent Switcher`_ for Firefox.
+
 .. _`django-mobility`: https://github.com/jbalogh/django-mobility
 .. _`Approaches to Mobile Web Development`: http://blog.mozilla.com/webdev/2011/05/04/approaches-to-mobile-web-development-part-1-what-is-mobile-friendliness/
 .. _`Part 2 (Separate Sites)`: http://blog.mozilla.com/webdev/2011/05/13/approaches-to-mobile-web-development-part-2-separate-sites/
 .. _`Part 3 (Responsive Design)`: http://blog.mozilla.com/webdev/2011/05/27/approaches-to-mobile-web-development-part-3-responsive-design/
+.. _`User Agent Switcher`: https://addons.mozilla.org/en-US/firefox/addon/user-agent-switcher/
