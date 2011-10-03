@@ -1,5 +1,5 @@
 ========================================
-Virtualization, not emulation!
+Vagrant (Virtualization, not emulation!)
 ========================================
 
 playdoh comes with out-of-the-box support for running your web app in a
@@ -13,7 +13,7 @@ How Does it Work?
 -----------------
 
 playdoh use `VirtualBox <https://www.virtualbox.org/>`_, `Vagrant
-<http://vagrantup.com/>`_, and `puppet <http://puppetlabs.com/>` to do its
+<http://vagrantup.com/>`_, and `puppet <http://puppetlabs.com/>`_ to do its
 magic. Vagrant allows for us to easily customize and access our virtual
 machines; puppet lets us run custom commands (like installing MySQL or
 setting up databases); and VirtualBox runs our created VMs.
