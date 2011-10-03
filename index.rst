@@ -50,6 +50,7 @@ Contents
    features
    libs
    packages
+   vagrant
    operations
    migrations
    l10n
