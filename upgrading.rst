@@ -26,7 +26,7 @@ Any app, even if it's not originally a playdoh fork can be "Funfacorified".
 #. Change manage.py to match playdoh's manage.py.
 #. In ``settings.py`` add to the top::
 
-    from funfactory.settings import *
+    from funfactory.settings_base import *
 
 #. In ``settings.py`` change::
 
