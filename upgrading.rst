@@ -20,7 +20,7 @@ Funfactorifying any Project
 ---------------------------
 
 Applying Playdoh to an exisitng Django app is a little different than
-:doc:`starting an app from scratch <gettingstarted>`.  Here's hot it works:
+:doc:`starting an app from scratch <gettingstarted>`.  Here's how it works:
 
 #. Remove ``apps/commons`` if it came from playdoh.
 #. Add `funfactory`_ to the `vendor <packages>`:ref: library.
