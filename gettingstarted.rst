@@ -63,8 +63,8 @@ Create a custom settings file (git will ignore this file)::
 
     cp settings_local.py-dist settings_local.py
 
-Set ``SECRET_KEY`` to any random, non-empty value.
-When in production be sure to make this a long complicated string.
+Set ``SECRET_KEY`` to any random, non-empty value. `The longer the better
+<https://docs.djangoproject.com/en/dev/ref/settings/#secret-key>`_.
 
 Out of the box Playdoh is configured for use with a `MySQL`_ database
 named ``playdoh_app``.  You can change that name or switch out the backend,
