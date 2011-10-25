@@ -19,10 +19,11 @@ upgrade paths:
 Funfactorifying any Project
 ---------------------------
 
-Any app, even if it's not originally a playdoh fork can be "Funfacorified".
+Applying Playdoh to an exisitng Django app is a little different than
+:doc:`starting an app from scratch <gettingstarted>`.  Here's hot it works:
 
 #. Remove ``apps/commons`` if it came from playdoh.
-#. Add ``funfactory`` to the `vendor <packages>`:ref: library.
+#. Add `funfactory`_ to the `vendor <packages>`:ref: library.
 #. Change manage.py to match playdoh's manage.py.
 #. In ``settings.py`` add to the top::
 
@@ -42,8 +43,7 @@ Any app, even if it's not originally a playdoh fork can be "Funfacorified".
    if they are already in ``funfactory.settings_base.py``.
 
 #. You can remove any redundant settings in ``settings.py`` if they appear in
-   ``funfactory.settings_base.py``.
-
+   ``funfactory.settings_base``.
 
 Manual upgrade
 --------------

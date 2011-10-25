@@ -5,7 +5,7 @@ Getting started
 
 .. seealso::
 
-    :ref:`upgrading-via-funfactory`
+    :ref:`Applying Playdoh to an existing Django app <upgrading-via-funfactory>`
 
 Requirements
 ------------
