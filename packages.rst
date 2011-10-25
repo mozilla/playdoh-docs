@@ -4,19 +4,22 @@
 pip and friends: Packaging
 ==========================
 
-*(largely borrowed from Zamboni)*
+(largely borrowed from `Zamboni`_)
 
 Your app will depend on lots of tasty open source Python libararies. The list
-of all your dependencies should exist in two places:
-# requirements/prod.txt
-# As a submodule of vendor
+of all your dependencies should exist in several places:
 
-Ultimately your app code will run against the libraries under vendor via mod_wsgi.
+1. requirements/prod.txt
+2. As a submodule of vendor or vendor-local
+
+Ultimately your app code will run against the libraries under
+vendor/vendor-local via mod_wsgi.
 
 Why requirements? For developement, you can use virtualenvs and pip to have a 
 tidy self-contained environment. If run from the Django runserver command, you
 don't even need a web server.
 
+.. _`Zamboni`: https://github.com/mozilla/zamboni/
 
 The vendor library
 ------------------
@@ -36,6 +39,13 @@ These can come from your system package manager or from::
 
     pip install -r requirements/compiled.txt
 
+The vendor-local library
+------------------------
+
+The ``/vendor-local`` directory is laid out exactly like vendor and works the
+same way. All of your custom pure Python dependencies should go here so that
+you can freely merge with playdoh's vendor directory if necessary. See the
+section on adding new packages below.
 
 Global vs. local library
 ------------------------
@@ -65,8 +75,8 @@ would add it to ``requirements/prod.txt``. If your library isn't used in
 production, then put it in ``requirements/dev.txt``. This makes it available 
 to users installing into virtualenvs.
 
-We also need to add the new package to the vendor lib, since that is what runs
-in production...
+We also need to add the new package to the vendor-local lib, since that is
+what runs in production...
 
 First, we need to add the source. There are two ways, depending on how
 this project is hosted:
@@ -98,10 +108,12 @@ example::
     git add src/django-piston
     git commit
 
-Note: Installed source packages need to be appended to
-``vendor-local/vendor.pth``. See note below. For example::
+.. note::
 
-    echo src/django-piston >> vendor-local/vendor.pth
+  Installed source packages need to be appended to
+  ``vendor-local/vendor.pth``. See note below. For example::
+
+      echo src/django-piston >> vendor-local/vendor.pth
     
 git-based repositories
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -172,16 +184,16 @@ For reference: pip
 The classical method of installing is using pip. We have our packages
 separated into three files:
 
-:src:`requirements/compiled.txt`
+``requirements/compiled.txt``
     All packages that require (or go faster with) compilation.  These can't be
     distributed cross-platform, so they need to be installed through your
     system's package manager or pip.
 
-:src:`requirements/prod.txt`
+``requirements/prod.txt``
     The minimal set of packages you need to run zamboni in production.  You
     also need to get ``requirements/compiled.txt``.
 
-:src:`requirements/dev.txt`
+``requirements/dev.txt``
     All the packages needed for running tests and development servers.  This
     automatically includes ``requirements/prod.txt``.
 

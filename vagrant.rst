@@ -1,3 +1,5 @@
+.. highlight:: bash
+
 ========================================
 Vagrant (Virtualization, not emulation!)
 ========================================
@@ -12,7 +14,7 @@ running when you start a new app.
 How Does it Work?
 -----------------
 
-playdoh use `VirtualBox <https://www.virtualbox.org/>`_, `Vagrant
+playdoh uses `VirtualBox <https://www.virtualbox.org/>`_, `Vagrant
 <http://vagrantup.com/>`_, and `puppet <http://puppetlabs.com/>`_ to do its
 magic. Vagrant allows for us to easily customize and access our virtual
 machines; puppet lets us run custom commands (like installing MySQL or
@@ -33,7 +35,7 @@ X, select the Mac version). Don't worry about guest operating system; vagrant
 take care of that for you.
 
 Next, install vagrant. It's a Ruby package (Ruby?! Scary!), but it's quite good
-and non-intimidating to install. Just do
+and non-intimidating to install. Just do::
 
     gem install vagrant
 
@@ -47,6 +49,8 @@ inside it.
 
 How Do I Boot and Access My VM?
 -------------------------------
+
+::
 
     cd ~/my_project_directory
     vagrant up
@@ -62,7 +66,7 @@ into your projects directly and run whatever manage.py commands you like.
 
 playdoh's vagrant setup takes the liberally of forwarding port 8000 (the usual
 Django development port), so if you want to access your web app, do the
-following (after using ``vagrant ssh`` to get into your VM):
+following (after using ``vagrant ssh`` to get into your VM)::
 
     cd project
     ./manage.py runserver 0.0.0.0:8000

@@ -22,7 +22,7 @@ Funfactorifying any Project
 Any app, even if it's not originally a playdoh fork can be "Funfacorified".
 
 #. Remove ``apps/commons`` if it came from playdoh.
-#. Add ``funfactory`` to the vendor library.
+#. Add ``funfactory`` to the `vendor <packages>`:ref: library.
 #. Change manage.py to match playdoh's manage.py.
 #. In ``settings.py`` add to the top::
 
