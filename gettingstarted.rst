@@ -61,7 +61,7 @@ Configuration
 Once your app is set up, there are a few things you need to configure.
 Create a custom settings file (git will ignore this file)::
 
-    cp settings_local.py-dist settings_local.py
+    cp settings/local.py-dist settings/local.py
 
 Set ``SECRET_KEY`` to any random, non-empty value. `The longer the better
 <https://docs.djangoproject.com/en/dev/ref/settings/#secret-key>`_.

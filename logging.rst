@@ -59,7 +59,7 @@ Sometimes logging can be noisy::
     elasticsearch: DEBUG: Search disabled for <function add_to_index at 0x102e58848>.
 
 Commonware as configured in playdoh, allows you to configure logging via
-a ``dict`` in your `settings` (preferrably `settings_local.py`)::
+a ``dict`` in your `settings` (preferrably `settings/local.py`)::
 
     error = dict(level=logging.ERROR)
     info = dict(level=logging.INFO)
