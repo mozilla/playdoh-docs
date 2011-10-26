@@ -33,7 +33,7 @@ into French.  This is so that you can get the hang of how things work out of
 the box.  To get started, simply follow these quick steps:
 
 #. ``./bin/compile-mo.sh locale/``
-#. Set ``DEV=True`` in ``settings_local.py``
+#. Set ``DEV=True`` in ``settings/local.py``
 #. ``./manage.py runserver``
 #. Point your browser to ``http://127.0.0.1:8000/fr``
 

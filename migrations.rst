@@ -41,6 +41,6 @@ Then, as the schema evolves, add incremental migrations as ``02-...sql``, etc.
 
 When setting up a copy of the codebase from scratch in the future, forgo
 *syncdb* altogether and after setting your empty database's credentials
-correctly in ``settings_local.py``, just run ``schematic migrations/``. It will
+correctly in ``settings/local.py``, just run ``schematic migrations/``. It will
 run your base migration, followed by incremental updates, and result in a
 database that's up to date with your latest existing databases.

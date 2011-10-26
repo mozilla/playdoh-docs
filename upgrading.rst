@@ -86,8 +86,8 @@ First, make sure you have a reference to the main playdoh repo:
   git submodule update --init
   popd
 
-3. Take a look at settings_local.py-dist to see if there are new
-   settings you need in your own settings_local.py
+3. Take a look at settings/local.py-dist to see if there are new
+   settings you need in your own settings/local.py
 4. Run ``pip install -r requirements/compiled.txt`` in case there are new
    requirements.
 

@@ -34,11 +34,12 @@ Arecibo, add the destination server to your `local_settings.py`.
 If are developing a site for Mozilla, you can use an `existing`_ Arecibo
 server, otherwise you'll need to set one up.
 
-For example in `settings_local.py`::
+For example in `settings/local.py`::
 
     ARECIBO_SERVER_URL = 'http://amckay-arecibo.khan.mozilla.org'
 
-The easiest way to report exceptions is to use the middleware, again in `settings_local.py`::
+The easiest way to report exceptions is to use the middleware, again
+in `settings/local.py`::
 
     MIDDLEWARE_CLASSES += 'django_arecibo.middleware.AreciboMiddlewareCelery',
 
