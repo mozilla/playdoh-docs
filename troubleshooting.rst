@@ -17,3 +17,37 @@ Make sure that your project directory is called **differently than**:
 
 It is a good idea to give your project a concise code name that's somewhat
 unique to avoid such namespace problems.
+
+CSRF issues?
+------------
+
+A common problem is that ``{{ csrf() }}`` returns an empty string in your 
+templates.
+
+By default playdoh uses ``session_csrf`` instead of Django's default CSRF 
+framework. One common mistake when going from standard Django CSRF to 
+``session_csrf`` is that you now need to decorate all your view functions
+that expect anonymous users to use it (e.g. the login view). For example::
+
+    from session_csrf import anonymous_csrf
+    ...
+    
+    @anonymous_csrf
+    def login(request):
+        ...
+
+Note that ``session_csrf`` is switched on by default in ``funfactory``. 
+Therefore, you need to make sure your settings are set up correctly. 
+These are the things you need to have in your settings:
+
+* A working cache backend (e.g. ``CACHES`` also known as ``CACHE_BACKEND``)
+
+* In ``TEMPLATE_CONTEXT_PROCESSORS`` make sure it contains 
+``session_csrf.context_processor``
+
+* In ``MIDDLEWARE_CLASSES`` make sure it contains ``session_csrf.CsrfMiddleware``
+
+.. see also::
+   
+   * https://github.com/mozilla/django-session-csrf/blob/master/session_csrf/__init__.py
+   * https://github.com/django/django/blob/master/django/template/defaulttags.py#L40
