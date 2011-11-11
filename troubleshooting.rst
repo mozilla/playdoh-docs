@@ -23,7 +23,7 @@ Sessions not persisting after authentication?
 
 Be sure to double check your settings file(s) for anything that might not
 work with localhost (but will work in production). For example, make sure
-that if you require SESSION_COOKIE_SECURE to be set to True in production,
+that if you require ``SESSION_COOKIE_SECURE`` to be set to True in production,
 set it to False in development (localhost). Or else your sessions will 
 never work properly.
 
