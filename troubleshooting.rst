@@ -43,11 +43,11 @@ These are the things you need to have in your settings:
 * A working cache backend (e.g. ``CACHES`` also known as ``CACHE_BACKEND``)
 
 * In ``TEMPLATE_CONTEXT_PROCESSORS`` make sure it contains 
-``session_csrf.context_processor``
+  ``session_csrf.context_processor``
 
 * In ``MIDDLEWARE_CLASSES`` make sure it contains ``session_csrf.CsrfMiddleware``
 
-.. see also::
-   
+.. seealso::
+
    * https://github.com/mozilla/django-session-csrf/blob/master/session_csrf/__init__.py
    * https://github.com/django/django/blob/master/django/template/defaulttags.py#L40
