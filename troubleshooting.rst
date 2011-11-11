@@ -18,6 +18,15 @@ Make sure that your project directory is called **differently than**:
 It is a good idea to give your project a concise code name that's somewhat
 unique to avoid such namespace problems.
 
+Sessions not persisting after authentication?
+---------------------------------------------
+
+Be sure to double check your settings file(s) for anything that might not
+work with localhost (but will work in production). For example, make sure
+that if you require SESSION_COOKIE_SECURE to be set to True in production,
+set it to False in development (localhost). Or else your sessions will 
+never work properly.
+
 CSRF issues?
 ------------
 
@@ -41,6 +50,9 @@ Therefore, you need to make sure your settings are set up correctly.
 These are the things you need to have in your settings:
 
 * A working cache backend (e.g. ``CACHES`` also known as ``CACHE_BACKEND``)
+
+* As part of a working cache backend, make sure memcached (or whatever you are
+  using for caching) is running on your machine
 
 * In ``TEMPLATE_CONTEXT_PROCESSORS`` make sure it contains 
   ``session_csrf.context_processor``
