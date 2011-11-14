@@ -79,6 +79,7 @@ Contents
    upgrading
    bestpractices
    troubleshooting
+   monkeypatches
 
 
 Indices and tables
