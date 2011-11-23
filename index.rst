@@ -26,60 +26,26 @@ Playdoh template.
 .. _`web development`: http://blog.mozilla.com/webdev/
 .. _`Mozilla's L10n standards`: https://wiki.mozilla.org/L10n:Home_Page
 
-Let's Go!
----------
-
-:doc:`Install <gettingstarted>` Playdoh now or :ref:`apply it
-<upgrading-via-funfactory>` to an existing Django app.
-
-
-Features
---------
-
-Quick and dirty (and probably incomplete) feature list:
-
-* Rich, but "cherry-pickable" features out of the box:
-
-  * Django
-  * jinja2 template engine
-  * Simple database migrations
-  * Full localization support
-  * :doc:`logging`
-  * ...
-
-* Secure by default:
-
-  * Stronger password hashing
-  * X-Frame-Options: DENY by default
-  * secure and httponly flags on cookies enabled by default
-  * ...
-
-:ref:`Full feature list <features>` (work in progress)...
-
 
 Contents
 --------
 
 .. toctree::
+   :maxdepth: 2
+
+   getting-started/index
+   userguide/index
+
+.. toctree::
    :maxdepth: 1
 
-   gettingstarted
-   features
-   libs
    packages
-   vagrant
+
    operations
-   migrations
-   l10n
-   mobile
-   logging
-   errors
-   template-context
-   docs
-   upgrading
    bestpractices
-   troubleshooting
+
    monkeypatches
+   troubleshooting
 
 
 Indices and tables

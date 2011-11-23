@@ -1,11 +1,7 @@
-.. highlight:: bash
+============
+Installation
+============
 
-Getting started
-===============
-
-.. seealso::
-
-    :ref:`Applying Playdoh to an existing Django app <upgrading-via-funfactory>`
 
 Requirements
 ------------
@@ -98,9 +94,3 @@ Publishing your repo
     git remote rename origin playdoh
     git remote add origin git@github.com:mozilla/foobar.git
     git push -u origin base
-
-
-Upgrading
----------
-
-There is a :doc:`whole section <upgrading>` on that!
