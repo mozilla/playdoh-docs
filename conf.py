@@ -220,6 +220,7 @@ man_pages = [
 
 intersphinx_mapping = dict(
     python= ('http://docs.python.org/', None),
-    django= ('https://docs.djangoproject.com/en/dev/', 'django.inv')
+    django= ('https://docs.djangoproject.com/en/dev/', 'django.inv'),
+    celery= ('http://celery.readthedocs.org/en/latest/', None)
 )
 
