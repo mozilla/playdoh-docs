@@ -169,3 +169,27 @@ you're doing!), Django's ``csrf_exempt`` decorator still works as expected.
 
 To learn more about this method, refer to the
 `django-session-csrf README <https://github.com/mozilla/django-session-csrf#readme>`_.
+
+
+CEF (Common Event Format) logging
+---------------------------------
+
+Playdoh is set up for `Common Event Format (CEF) <http://pypi.python.org/pypi/cef>`_
+logging. CEF is a unified logging format for security-relevant events and
+can be used by `ArcSight <http://www.arcsight.com/solutions/solutions-cef/>`_
+and similar applications.
+
+For example, to log a user resetting their password, you would do something
+like this:
+
+.. code-block:: python
+
+    import logging
+    from funfactory.log import log_cef
+
+    def pw_reset(request, user):
+        log_cef('Password Reset', logging.INFO, request, username=user.username,
+                signature='PASSWORDRESET', msg='User requested password reset')
+
+For more information about logging and suggestions on what kinds of events to
+log, refer to the `Mozilla Security Wiki <https://wiki.mozilla.org/Security/Users_and_Logs>`_.
