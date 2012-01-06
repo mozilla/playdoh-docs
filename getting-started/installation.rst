@@ -93,4 +93,4 @@ Publishing your repo
 
     git remote rename origin playdoh
     git remote add origin git@github.com:mozilla/foobar.git
-    git push -u origin base
+    git push -u origin master
