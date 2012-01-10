@@ -6,7 +6,7 @@ Installation
 Requirements
 ------------
 
-You need `Python`_ 2.6 and `git`_.
+You need `Python`_ 2.6, `git`_, virtualenv_, and a Unix like OS.
 
 .. _`Python`: http://python.org/
 .. _`git`: http://git-scm.com/
@@ -14,57 +14,45 @@ You need `Python`_ 2.6 and `git`_.
 Starting a project based on playdoh
 -----------------------------------
 
-To check out playdoh, run::
+Install the funfactory module
+`from PyPI <http://pypi.python.org/pypi/funfactory>`_
+or `from source <https://github.com/mozilla/funfactory>`_
+with a package manager like `pip`_::
 
-    git clone --recursive git://github.com/mozilla/playdoh.git your_project
+    pip install funfactory
 
-This project is set up to use a vendor library, i.e. a subdirectory ``vendor``
-that contains all pure Python libraries required by this project. The
-recursive checkout will also clone these requirements.
+This will install a command line script that you can use to create a new
+Playdoh app. Check out ``funfactory --help`` or install an app like this::
 
-The default branch of playdoh is ``base``. To start a new project, you fork
-playdoh and start working on your app in ``master``.
+    funfactory --python=python2.6 --pkg=yourapp
 
-::
+The automatic install process goes like this:
 
-    cd your_project
-    git checkout base
-    git checkout -b master
-
+1. Clone the `Playdoh git repository`_
+2. Create a custom ``yourapp`` package
+3. Create a `virtualenv`_
+4. Install/compile all requirements
+5. Create a local settings file in ``yourapp/settings/local.py``
 
 .. seealso::
 
     :doc:`Installing everything automatically in a Vagrant VM <vagrant>`
 
-In addition, there are compiled libraries (such as Jinja2) that you will need
-to build yourself, either by installing them from `PyPI`_ or by using your
-favorite package manager for your OS.
+The Playdoh project layout uses a vendor library, i.e. a subdirectory ``vendor``
+that contains all pure Python libraries required. In addition, a few C based
+libraries (such as Jinja2, bcrypt, etc) get built by the installer. For more
+information on vendor libraries, read :ref:`packages`.
 
-For development, you can run this in a `virtualenv environment`_
-using `pip`_::
-
-    pip install -r requirements/compiled.txt
-
-For more information on vendor libraries, read :ref:`packages`.
-
-.. _virtualenv environment: http://pypi.python.org/pypi/virtualenv
+.. _`Playdoh git repository`: https://github.com/mozilla/playdoh
+.. _virtualenv: http://pypi.python.org/pypi/virtualenv
 .. _pip: http://www.pip-installer.org/
 .. _`PyPI`: http://pypi.python.org/pypi
 
 Configuration
 -------------
 
-Once your app is set up, there are a few things you need to configure.
-Create a custom settings file (git will ignore this file)::
-
-    cp settings/local.py-dist settings/local.py
-
-Set ``SECRET_KEY`` to any random, non-empty value. `The longer the better
-<https://docs.djangoproject.com/en/dev/ref/settings/#secret-key>`_.
-
-Out of the box Playdoh is configured for use with a `MySQL`_ database
-named ``playdoh_app``.  You can change that name or switch out the backend,
-otherwise you'll need to create the database::
+By default the funfactory installer configures your app to use a `MySQL`_
+database named ``playdoh_app``. You'll need to create the database manually::
 
     mysql -u root -e 'create database playdoh_app;'
 
@@ -78,19 +66,14 @@ Start the development server::
 
 You can now view the dev server at http://localhost:8000/ -- hooray!
 
-If you start adding pieces that should go back into playdoh, you can apply the
-patch to base and move it upstream. However, most of Playdoh's functionality
-is in a separate module called `funfactory`_ so you may want to make changes
-there and submit a pull request.
+If you start adding pieces that should go back into playdoh, you will probably
+want to patch `funfactory`_, which is the core of Playdoh.
 
 .. _funfactory: https://github.com/mozilla/funfactory
 .. _`MySQL`: http://www.mysql.com/
 
-Publishing your repo
---------------------
 
-::
+Upgrading
+---------
 
-    git remote rename origin playdoh
-    git remote add origin git@github.com:mozilla/foobar.git
-    git push -u origin master
+There is a :doc:`whole section <upgrading>` on that!

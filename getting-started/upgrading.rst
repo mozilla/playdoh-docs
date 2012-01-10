@@ -5,10 +5,8 @@ Upgrading Playdoh
 =================
 
 Upgrading your app to the latest version of playdoh means you'll share the
-latest features.
-
-Depending on the state of your app you'll want to choose one of the following
-upgrade paths:
+latest features. Depending on the state of your app you'll want to choose one of
+the following upgrade paths:
 
 .. contents::
     :local:
@@ -20,16 +18,22 @@ Funfactorifying any Project
 ---------------------------
 
 Applying Playdoh to an exisitng Django app is a little different than
-:doc:`starting an app from scratch <gettingstarted>`.  Here's how it works:
+:doc:`starting an app from scratch <installation>`.  Here's how it works:
 
-#. Remove ``apps/commons`` if it came from playdoh.
-#. Add `funfactory`_ to the `vendor <packages>`:ref: library.
-#. Change manage.py to match playdoh's manage.py.
-#. In ``settings.py`` add to the top::
+#. Add `funfactory`_ to the `vendor <packages>`:ref: library. If you don't have
+   a vendor submodule, take a look at how the :doc:`installer <installation>`
+   sets that up. If you like, you can simply install `funfactory from PyPI`_
+   into a virtualenv.
+#. Funfactory expects you to have a top level Python module named ``yourapp`` or
+   whatever. This is a directory with an ``__init__.py`` file and all its
+   submodules will be your various Django apps.
+#. Change manage.py to match playdoh's manage.py. Specifically, it needs to do
+   some setup and calls ``funfactory.manage.setup_environ(...)`` for that.
+#. In ``yourapp/settings/__init__.py`` add to the top::
 
     from funfactory.settings_base import *
 
-#. In ``settings.py`` change::
+#. In ``yourapp/settings/__init__.py`` change::
 
         INSTALLED_APPS = (...)
 
@@ -38,6 +42,7 @@ Applying Playdoh to an exisitng Django app is a little different than
         INSTALLED_APPS = list(INSTALLED_APPS) + [ ... ]
 
    Do the same for any other lists which have been customized.
+   This will ensure that you inherit the default funfactory settings.
 
    You can remove any entries in ``INSTALLED_APPS`` from your ``settings.py``
    if they are already in ``funfactory.settings_base.py``.
@@ -45,20 +50,20 @@ Applying Playdoh to an exisitng Django app is a little different than
 #. You can remove any redundant settings in ``settings.py`` if they appear in
    ``funfactory.settings_base``.
 
+.. _`funfactory from PyPI`: http://pypi.python.org/pypi/funfactory
+
 Manual upgrade
 --------------
 
-All of Playdoh's core changes are encapsulated in the funfactory_ module
-which is a git submodule in the vendor directory.  Chances are that
-pulling in upstream changes will be as simple as updating this module
-in your vendor lib.  There is a slight chance that some additional changes
-were made so you may want to examine the latest playdoh commits.
+All of Playdoh's core is encapsulated by the funfactory_ module which is a git
+submodule in the vendor directory or a python package installed in a virtualenv
+if you choose. You can upgrade your app by upgrading that module.
 
 Recently forked app
 -------------------
 
 If you have a recent fork of playdoh, you can probably safely merge changes
-from the base branch of playdoh and merge it into your master.
+from the master branch of playdoh.
 
 First, make sure you have a reference to the main playdoh repo:
 
@@ -66,14 +71,12 @@ First, make sure you have a reference to the main playdoh repo:
 
   git remote add playdoh git@github.com:mozilla/playdoh.git
 
-1. Checkout the base branch, pull and merge with your master branch:
+1. pull and merge with your master branch:
 
 .. code-block:: bash
 
-  git checkout base
-  git pull playdoh base
   git checkout master
-  git merge base
+  git pull playdoh master
 
 2. Recursively update the vendor submodules to pull in any new or updated
    third party Python modules:
@@ -86,39 +89,27 @@ First, make sure you have a reference to the main playdoh repo:
   git submodule update --init
   popd
 
-3. Take a look at settings/local.py-dist to see if there are new
-   settings you need in your own settings/local.py
+3. Take a look at ``project/settings/local.py-dist`` to see if there are new
+   settings you need in your own ``yourapp/settings/local.py``
 4. Run ``pip install -r requirements/compiled.txt`` in case there are new
    requirements.
 
-.. remove this after 1 Dec 2011
+.. remove this after 1 Aug 2012
 
 Upgrading an old Playdoh fork
 -----------------------------
 
 .. note:: Thank you for being an early adopter! Muhuhahaha.
 
-Playdoh core was factored out of the main git repo into
-the funfactory_ module as part of `Issue 29`_ which was closed on
-July 20, 2011.  If you still have ``apps/commons`` in your project then you
-probably cloned from the playdoh repo before this change was made.
-There were a lot of changes so trying to merge with base will most likely
-result in conflicts.
+The Playdoh apps layout was majorly refactored in Jan 2012 as part of
+`Pull 67`_. Instead of having a directory called ``apps`` that contains separate
+Python modules there is now one top level package called ``project`` or whatever
+you choose to name it. For each individual Django app therein, you'll now refer
+to it as a submodule, like ``project.users``, ``project.payments``, etc. It's
+also no longer possible to run your root directory as a Python module. That is,
+the ``__init__.py`` file was removed.
 
-The best way to upgrade your app is to get a fresh clone from the current
-playdoh and copy over each file one by one. Then review the diff to see that
-you didn't lose any customization. Be sure to also update all vendor
-submodules.
-
-Here is an `example diff`_ of an older
-app that was manually upgraded to the new funfactory-based Playdoh.
-There is a `second diff`_ that updates its vendor submodule to use funfactory.
-This is just an example. These diffs are already out of date with some changes
-that were made to manage.py and possibly some other files.
-
-.. _example diff: https://github.com/mozilla/affiliates/commit/5c37c222b9aebca890995dc4e5e9d20ac58f67b7
-.. _second diff: https://github.com/mozilla/affiliates/commit/838e0267b07ee0419ebe4cc6d5ec0c8ac9250f2e
-.. _Issue 29: https://github.com/mozilla/playdoh/issues/29
+.. _Pull 67: https://github.com/mozilla/playdoh/pull/67
 .. _funfactory: https://github.com/mozilla/funfactory
 
 
