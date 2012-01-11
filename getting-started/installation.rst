@@ -6,7 +6,8 @@ Installation
 Requirements
 ------------
 
-You need `Python`_ 2.6 or 2.7, `git`_, virtualenv_, and a Unix like OS.
+You need `Python`_ 2.6 or 2.7, `MySQL`_, `git`_, virtualenv_, and a Unix like
+OS.
 
 .. _`Python`: http://python.org/
 .. _`git`: http://git-scm.com/
