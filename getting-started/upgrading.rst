@@ -52,6 +52,8 @@ Applying Playdoh to an exisitng Django app is a little different than
 
 .. _`funfactory from PyPI`: http://pypi.python.org/pypi/funfactory
 
+.. _manual-upgrae:
+
 Manual upgrade
 --------------
 
@@ -64,6 +66,11 @@ Recently forked app
 
 If you have a recent fork of playdoh, you can probably safely merge changes
 from the master branch of playdoh.
+
+.. note::
+  
+   "Recently" is subjective.  Generally if you've made any commits, you're probably better off doing a 
+   :ref:`manual-upgrade`.
 
 First, make sure you have a reference to the main playdoh repo:
 
