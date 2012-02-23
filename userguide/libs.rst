@@ -19,7 +19,7 @@ Python
 Database
 --------
 
-* `django-multidb-router <https://github.com/jbalogh/django-multidb-router>`_:
+* `django-multidb-router <https://github.com/jbalogh/django-multidb-router>`_\*:
   Round-robin master/slave db router for Django 1.2.
 * `schematic <https://github.com/jbalogh/schematic>`_\*:
   Simple database migration tool.
@@ -29,7 +29,7 @@ Deferred Execution (cron, message queues)
 
 * `django-celery <https://github.com/ask/django-celery>`_\*:
   Celery integration for Django.
-* `django-cronjobs <https://github.com/jsocol/django-cronjobs>`_:
+* `django-cronjobs <https://github.com/jsocol/django-cronjobs>`_\*:
   A simple cron-running management command for Django.
 * `django-gearman <https://github.com/fwenzel/django-gearman>`_:
   A convenience wrapper for Gearman clients and workers in Django/Python.
@@ -39,7 +39,7 @@ Deployment
 
 * `django-waffle <https://github.com/jsocol/django-waffle>`_:
   A feature flipper for Django.
-* `django-arecibo <https://github.com/andymckay/django-arecibo>`_ \*:
+* `django-arecibo <https://github.com/andymckay/django-arecibo>`_\*:
   Track the errors on your website in a database.
 
 Internationalization (i18n) and Localization (L10n)
@@ -60,7 +60,7 @@ Middleware
 
 * `commonware <http://github.com/jsocol/commonware>`_\*:
   Middlewares and other stuff we share.
-* `django-mobility <https://github.com/jbalogh/django-mobility>`_:
+* `django-mobility <https://github.com/jbalogh/django-mobility>`_\*:
   Middleware and decorators for directing users to your mobile site.
 
 Mozilla
