@@ -140,9 +140,9 @@ Let's say you are told to translate this.  You could do the following::
 
 This has a few problems, however:
 
-* It forces every localizer to mimic you're HTML, potentially breaking it.
+* It forces every localizer to mimic your HTML, potentially breaking it.
 * If you decide to change the HTML, you need to either update your ``.po``
-  files or buy all your localizers a nice gift because of all the pain you'll
+  files or buy all your localizers a nice gift because of all the pain you're
   inflicting upon them.
 * If the URL changes, your localizer has to update everything.
 
@@ -169,10 +169,11 @@ or if you have multiple paragraphs::
       </p>
     {% endtrans %}
 
-Here's the advantages:
+Here are the advantages:
 
 * Localizers have to do minimal HTML.
 * The links and even structure of the document can change, but the
   localizations can stay put.
 
 Be mindful of work that localizers will have to do.
+
