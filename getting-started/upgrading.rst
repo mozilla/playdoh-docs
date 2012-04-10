@@ -54,6 +54,20 @@ Applying Playdoh to an exisitng Django app is a little different than
 
 .. _manual-upgrae:
 
+
+Mind those monkey patches
+-------------------------
+
+As of April 2012, every playdoh project needs to invoke the collected
+monkey patches in funfactory. By doing this explicitely in each
+project (as opposed to relying on ``funfactory/model.py`` to do it
+automatically) we make sure monkey patches are safely executed both
+when running ``runserver`` and when running as a WSGI app. 
+
+See the :ref:`Monkey patches <monkeypatches>` documentation for the
+lines you need to add to your root urls.py if you don't already have
+them. 
+
 Manual upgrade
 --------------
 

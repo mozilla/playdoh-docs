@@ -8,11 +8,23 @@ Unfortunately we have to rely on a set of monkey patches. These are
 `loaded from funfactory
 <https://github.com/mozilla/funfactory/blob/master/funfactory/monkeypatches.py>`_. 
 
-This works because the first installed app is always
-``funfactory`` and the first thing Django does after configuring itself
-(i.e. ``django.conf.settings`` is a module) is to load the
-``models.py`` file from every installed app. 
+This is still something you have to invoke from your playdoh project.
+The best place to do this is from the root ``urls.py`` file. The two
+lines you need are::
 
+    from funfactory.monkeypatches import patch
+    patch()
+    
+This should ideally happen before the ``urlpatterns`` is set up and
+it's demonstrated in `the default project urls.py
+<https://github.com/mozilla/playdoh/blob/master/project/urls.py#L6>`_.
+
+.. note::
+
+    We used to rely on ``funfactory.models`` to automatically load and
+    run ``funfactory.monkeypatches.patch()`` but this is not reliable
+    when running as a WSGI app.
+    
 Ideally all monkey patches will one day go away. Either by individual
 apps getting smarter or Django getting smarter. 
 
