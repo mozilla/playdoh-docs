@@ -7,7 +7,7 @@ Vagrant (Virtualization, not emulation!)
 playdoh comes with out-of-the-box support for running your web app in a
 `virtual machine <http://en.wikipedia.org/wiki/Virtual_machine>`_. Basically,
 this means that you can easily get started developing a playdoh app on your
-local machine without having to futz with virtualenvs, dependancies, compiling
+local machine without having to futz with virtualenvs, dependencies, compiling
 things, or lots of other annoying things that make it a pain to hit the ground
 running when you start a new app.
 
