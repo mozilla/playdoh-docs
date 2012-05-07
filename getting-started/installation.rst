@@ -27,14 +27,28 @@ Playdoh app. Check out ``funfactory --help`` or install an app like this::
 
     funfactory --python=python2.6 --pkg=yourapp
 
+.. note::
+
+   This script will automatically create a new virtualenv by the name
+   of the `pkg` option unless you're already activated in an existing
+   virtualenv.
+   This is the same as running with the ``--venv`` option.
+
 The automatic install process goes like this:
 
 1. Clone the `Playdoh git repository`_
 2. Create a custom ``yourapp`` package
-3. Create a `virtualenv`_
+3. Create a `virtualenv`_ (if not already in one)
 4. Install/compile all requirements
 5. Create a local settings file in ``yourapp/settings/local.py``
 
+.. note:: 
+
+   If a virtualenv needs to be created and you have
+   ``virtualenvwrapper`` installed, the created virtualenv  will go in
+   your ``WORKON_HOME`` directory. Otherwise the virtualenv will be
+   installed in ``.virtualenv``.
+   
 .. seealso::
 
     :doc:`Installing everything automatically in a Vagrant VM <vagrant>`
