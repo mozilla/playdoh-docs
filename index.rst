@@ -2,10 +2,10 @@
 Playdoh
 =======
 
-**Mozilla's Playdoh** is a web application template based on Django_.
+**Mozilla's Playdoh** is a web application **template** based on Django_.
 
 Django is a high-level Python Web framework that encourages rapid development
-and clean, pragmatic design. Playdoh is simply a pre-configured Django app
+and clean, pragmatic design. Playdoh is simply a pre-configured Django project
 that adds some essential modules and middleware to meet the following goals:
 
 * Enhance the **security** of your application and its data
