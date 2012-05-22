@@ -17,7 +17,7 @@ the following upgrade paths:
 Funfactorifying any Project
 ---------------------------
 
-Applying Playdoh to an exisitng Django app is a little different than
+Applying Playdoh to an existing Django app is a little different than
 :doc:`starting an app from scratch <installation>`.  Here's how it works:
 
 #. Add `funfactory`_ to the `vendor <packages>`:ref: library. If you don't have
@@ -27,7 +27,7 @@ Applying Playdoh to an exisitng Django app is a little different than
 #. Funfactory expects you to have a top level Python module named ``yourapp`` or
    whatever. This is a directory with an ``__init__.py`` file and all its
    submodules will be your various Django apps.
-#. Change manage.py to match playdoh's manage.py. Specifically, it needs to do
+#. Change manage.py to match playdohs manage.py. Specifically, it needs to do
    some setup and calls ``funfactory.manage.setup_environ(...)`` for that.
 #. In ``yourapp/settings/__init__.py`` add to the top::
 
@@ -59,19 +59,19 @@ Mind those monkey patches
 -------------------------
 
 As of April 2012, every playdoh project needs to invoke the collected
-monkey patches in funfactory. By doing this explicitely in each
+monkey patches in funfactory. By doing this explicitly in each
 project (as opposed to relying on ``funfactory/model.py`` to do it
 automatically) we make sure monkey patches are safely executed both
-when running ``runserver`` and when running as a WSGI app. 
+when running ``runserver`` and when running as a WSGI app.
 
 See the :ref:`Monkey patches <monkeypatches>` documentation for the
 lines you need to add to your root urls.py if you don't already have
-them. 
+them.
 
 Manual upgrade
 --------------
 
-All of Playdoh's core is encapsulated by the funfactory_ module which is a git
+All of Playdohs core is encapsulated by the funfactory_ module which is a git
 submodule in the vendor directory or a python package installed in a virtualenv
 if you choose. You can upgrade your app by upgrading that module.
 
@@ -82,8 +82,8 @@ If you have a recent fork of playdoh, you can probably safely merge changes
 from the master branch of playdoh.
 
 .. note::
-  
-   "Recently" is subjective.  Generally if you've made any commits, you're probably better off doing a 
+
+   "Recently" is subjective.  Generally if you've made any commits, you're probably better off doing a
    :ref:`manual-upgrade`.
 
 First, make sure you have a reference to the main playdoh repo:
