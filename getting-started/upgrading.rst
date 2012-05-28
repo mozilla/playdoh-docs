@@ -29,23 +29,35 @@ Applying Playdoh to an existing Django app is a little different than
    submodules will be your various Django apps.
 #. Change manage.py to match playdohs manage.py. Specifically, it needs to do
    some setup and calls ``funfactory.manage.setup_environ(...)`` for that.
-#. In ``yourapp/settings/__init__.py`` add to the top::
+#. In ``yourapp/settings/base.py`` add to the top::
 
     from funfactory.settings_base import *
 
-#. In ``yourapp/settings/__init__.py`` change::
+#. In ``yourapp/settings/base.py`` change::
 
         INSTALLED_APPS = (...)
 
    to::
 
-        INSTALLED_APPS = list(INSTALLED_APPS) + [ ... ]
+        INSTALLED_APPS = list(INSTALLED_APPS) + [...]
 
    Do the same for any other lists which have been customized.
    This will ensure that you inherit the default funfactory settings.
 
    You can remove any entries in ``INSTALLED_APPS`` from your ``settings.py``
-   if they are already in ``funfactory.settings_base.py``.
+   if they are already in ``funfactory.settings_base.py`` by using the utility
+   function ``get_apps`` from funfactory's ``utils.py``::
+
+        from funfactory.utils import get_apps
+
+        INSTALLED_APPS = get_apps(exclude=(
+            'django.contrib.auth',
+            'django_sha2'
+        ))
+
+   Similar functions ``get_middleware`` and ``get_template_context_processors``
+   exist to help manage ``MIDDLEWARE_CLASSES`` and
+   ``TEMPLATE_CONTEXT_PROCESSORS`` respectively.
 
 #. You can remove any redundant settings in ``settings.py`` if they appear in
    ``funfactory.settings_base``.
