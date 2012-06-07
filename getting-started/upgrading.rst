@@ -146,3 +146,79 @@ the ``__init__.py`` file was removed.
 .. _funfactory: https://github.com/mozilla/funfactory
 
 
+Upgrading from jingo-minify to django-compressor
+------------------------------------------------
+
+`django-compressor`_ is the new default and recommended tool for
+managing static assets. The old used to be `jingo-minify`_ and the
+difference is pretty big. `funfactory`_ attempts to set all the ideal
+settings for using `django-compressor`_ for you but you still have to
+significantly change how you reference things.
+
+With `jingo-minify` you would do::
+
+    # in settings/base.py
+    MINIFY_BUNDLES = {
+      'css': {
+        'common': ('css/main.less', 'css/plugins.css'),
+        ...
+      'js': {
+        'myapp.home': ('js/libs/jquery.js', 'js/home.js'),
+	...
+
+    # in base.html
+    <html>
+    <head>
+    {{ css('common') }}
+    
+    # in myapp/templates/myapp/html.html
+    {{ js('myapp.home') }}
+    </body>
+    </html>
+    
+Now, with `django-compressor` instead you do this::
+
+   # in settings/base.py
+   # Nothing!
+   
+   # in base.html
+   {% compress css %}
+   <link type="text/less" href="{{ static("css/main.less") }}">
+   <link href="{{ static("css/plugins.css") }}">
+   {% endcompress %}
+    
+   # in myapp/templates/myapp/html.html
+   {% compress js %}
+   <script src="{{ static("js/libs/jquery.js") }}"></script>
+   <script src="{{ static("myapp/js/home.js") }}"></script>
+   {% endcompress %}
+
+Since we're now using `django.contrib.staticfiles` you can place app
+specific static assets together with apps. So instead of::
+
+    media/js/myapp/home.js
+    
+it's now::
+
+    project/myapp/static/myapp/js/home.js
+    
+Since you're not using `collectstatic` as part of the development
+process, all the static files scattered into various apps are
+collected into one place. However, during development you don't want
+to rely on having to run `collectstatic` every time you edit a static
+file so what you do is you add this to your root `urls.py` file::
+
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    if settings.DEBUG:
+        urlpatterns += staticfiles_urlpatterns()
+	
+A note about `less`_. `django-compressor` automatically recognizes
+`<link>` tags with `type="text/less"` and it will try to convert these
+by executing the `lessc` command and assuming it's on your `PATH`. To
+override this see the `django-compressor settings
+documentation`_
+	
+.. _django-compressor: https://github.com/jezdez/django_compressor
+.. _jingo-minify: https://github.com/jsocol/jingo-minify
+.. _less: http://lesscss.org/
+.. _django-compressor settings documentation: http://django_compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_PRECOMPILERS
