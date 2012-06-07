@@ -53,11 +53,11 @@ How Do I Boot and Access My VM?
 ::
 
 If you don't yet have a project directory, you'll want to recursively clone the
-playdoh repository:
+playdoh repository::
 
     git clone https://github.com/mozilla/playdoh.git my_project_directory --recursive
 
-Then, enter the directory and tell vagrant to spin up a VM:
+Then, enter the directory and tell vagrant to spin up a VM::
 
     cd ~/my_project_directory
     vagrant up
