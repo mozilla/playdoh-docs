@@ -202,15 +202,16 @@ it's now::
 
     project/myapp/static/myapp/js/home.js
     
-Since you're not using `collectstatic` as part of the development
-process, all the static files scattered into various apps are
-collected into one place. However, during development you don't want
+During development you don't want
 to rely on having to run `collectstatic` every time you edit a static
-file so what you do is you add this to your root `urls.py` file::
+file. So what you do is you add this to your root `urls.py` file::
 
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
     if settings.DEBUG:
         urlpatterns += staticfiles_urlpatterns()
+
+Most playdoh based projects have something similar in their root `urls.py` but
+now that needs to change to this. 
 	
 A note about `less`_. `django-compressor` automatically recognizes
 `<link>` tags with `type="text/less"` and it will try to convert these
