@@ -212,6 +212,9 @@ file. So what you do is you add this to your root `urls.py` file::
 
 Most playdoh based projects have something similar in their root `urls.py` but
 now that needs to change to this. 
+
+Note: Since `collectstatic` is already part of the upgrade scripts in playdoh,
+you now don't need to run `compress_assets` any more.
 	
 A note about `less`_. `django-compressor` automatically recognizes
 `<link>` tags with `type="text/less"` and it will try to convert these
