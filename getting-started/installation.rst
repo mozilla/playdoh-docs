@@ -78,6 +78,11 @@ You can now view the dev server at http://localhost:8000/ -- hooray!
 If you start adding pieces that should go back into playdoh, you will probably
 want to patch `funfactory`_, which is the core of Playdoh.
 
+If your app's configuration requires you to add or remove apps, middleware, or
+template context processors from the default funfactory configuration, you can
+use the ``get_apps``, ``get_middleware``, and ``get_context_processors``
+functions. See the :ref:`settings management API <settings>` documentation.
+
 .. _funfactory: https://github.com/mozilla/funfactory
 .. _`MySQL`: http://www.mysql.com/
 

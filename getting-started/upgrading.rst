@@ -39,32 +39,18 @@ Applying Playdoh to an existing Django app is a little different than
 
    to::
 
-        INSTALLED_APPS = list(INSTALLED_APPS) + [...]
+        INSTALLED_APPS = get_apps(append=(...))
 
    Do the same for any other lists which have been customized.
    This will ensure that you inherit the default funfactory settings.
 
-   You can remove any entries in ``INSTALLED_APPS`` from your ``settings.py``
-   if they are already in ``funfactory.settings_base.py`` by using the utility
-   function ``get_apps`` from funfactory's ``utils.py``::
-
-        from funfactory.utils import get_apps
-
-        INSTALLED_APPS = get_apps(exclude=(
-            'django.contrib.auth',
-            'django_sha2'
-        ))
-
-   Similar functions ``get_middleware`` and ``get_template_context_processors``
-   exist to help manage ``MIDDLEWARE_CLASSES`` and
-   ``TEMPLATE_CONTEXT_PROCESSORS`` respectively.
+   See the :ref:`settings management API <settings>` for information about
+   funfactory's built-in settings management functions, including ``get_apps``.
 
 #. You can remove any redundant settings in ``settings.py`` if they appear in
    ``funfactory.settings_base``.
 
 .. _`funfactory from PyPI`: http://pypi.python.org/pypi/funfactory
-
-.. _manual-upgrae:
 
 
 Mind those monkey patches
@@ -79,6 +65,8 @@ when running ``runserver`` and when running as a WSGI app.
 See the :ref:`Monkey patches <monkeypatches>` documentation for the
 lines you need to add to your root urls.py if you don't already have
 them.
+
+.. _manual-upgrade:
 
 Manual upgrade
 --------------

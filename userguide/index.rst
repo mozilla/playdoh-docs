@@ -15,3 +15,4 @@ User Guide
    logging
    template-context
    errors
+   settings
