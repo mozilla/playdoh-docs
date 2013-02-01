@@ -63,3 +63,23 @@ These are the things you need to have in your settings:
 
    * https://github.com/mozilla/django-session-csrf/blob/master/session_csrf/__init__.py
    * https://github.com/django/django/blob/master/django/template/defaulttags.py#L40
+
+No logging?
+-----------
+
+If you're sure you set up loggers and handlers in ``settings.LOGGING`` but you
+see errors like "no handlers for the.log.name" in your live site, it could mean
+that your app is not importing ``monkeypatches``. Your ``project/app/urls.py``
+should have this line::
+
+    from funfactory.monkeypatches import patch
+    patch()
+
+This is included with the playdoh skeleton so you'd probably only run into this
+if you were trying to port an existing app to playdoh or do an upgrade.
+
+If you still don't see logging messages, check that your local settings didn't
+override ``settings.LOGGING``. Also make sure that all loggers have at least
+``{'handlers': ['console']}``.
+
+Yes, logging will make you feel a world of pain.
