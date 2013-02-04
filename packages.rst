@@ -6,7 +6,7 @@ pip and friends: Packaging
 
 (largely borrowed from `Zamboni`_)
 
-Your app will depend on lots of tasty open source Python libararies. The list
+Your app will depend on lots of tasty open source Python libraries. The list
 of all your dependencies should exist in several places:
 
 1. requirements/prod.txt
@@ -15,7 +15,7 @@ of all your dependencies should exist in several places:
 Ultimately your app code will run against the libraries under
 vendor/vendor-local via mod_wsgi.
 
-Why requirements? For developement, you can use virtualenvs and pip to have a 
+Why requirements? For development, you can use virtualenvs and pip to have a 
 tidy self-contained environment. If run from the Django runserver command, you
 don't even need a web server.
 
@@ -64,7 +64,7 @@ compiled.txt vs prod.txt
 If a Python library requires compilation, it should be recorded in compiled.txt.
 These aren't as portable and cannot be shipped in the vendor library.
 For local development, it's nice to pip install these into a virtualenv. A 
-common practise is to use virtual env **only** for compiled libraries and
+common practise is to use virtualenv **only** for compiled libraries and
 vendor for the rest of your dependencies.
 
 Adding new packages
