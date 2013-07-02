@@ -13,7 +13,7 @@ For a list of useful libraries (bundled with playdoh or not), check out
 The base: Django
 ================
 
-At the time of writing, Playdoh is based on `Django 1.3 <http://djangoproject.com>`_.
+At the time of writing, Playdoh is based on `Django 1.4.5 <http://djangoproject.com>`_.
 
 Enhancements:
 
