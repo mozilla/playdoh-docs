@@ -11,6 +11,10 @@ Localization works by searching for localizable text in your source code and
 extracting (or merging them) into `.po` files in `locale/`.
 
 
+.. note:: All new locales must be whitelisted before they show up in production.
+          See `Creating New Locales`_ for details.
+
+
 Requirements
 ------------
 
@@ -115,10 +119,28 @@ If you want to see these changes in your project::
 Creating New Locales
 ~~~~~~~~~~~~~~~~~~~~
 
-In your projects ``settings.py`` add the new locale to ``KNOWN_LANGUAGES``.
+In your project's ``settings.py`` add the new locale to the ``PROD_LANGUAGES``
+tuple. During development (when ``settings.DEV`` is True) all locales will show
+up if their po files exist but in production, locales will only show up if they exist
+in ``PROD_LANGUAGES`` *and* their po files exist.
+
+For example, make Polish and Brazilian Portuguese show up in production when
+each locale is fully ready to go live like this::
+
+    PROD_LANGUAGES = (
+        'en-US',
+        'pl',
+        'pt-BR',
+    )
+
 
 Then run ``./manage.py merge -c`` which will create directories for any locales
 that are missing in ``/locale``.
+
+If you want your visible locales in development to match that of production, you
+can set dev to use the same whitelist, like this in settings::
+
+    DEV_LANGUAGES = PROD_LANGUAGES
 
 
 Good Practices
