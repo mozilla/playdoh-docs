@@ -34,15 +34,8 @@ latest version of VirtualBox for your host operating system (if you run Mac OS
 X, select the Mac version). Don't worry about guest operating system; vagrant
 take care of that for you.
 
-Next, install vagrant. It's a Ruby package (Ruby?! Scary!), but it's quite good
-and non-intimidating to install. Just do::
-
-    gem install vagrant
-
-From your commandline. You might need to ``sudo``, depending on how your system
-is setup. If you don't have RubyGems installed on your system, please see your
-operating system's documentation on how to set that up. Most modern \*NIX
-systems have Ruby though, so you should be good.
+Next, install vagrant. Go to the `Vagrant downloads page <http://downloads.vagrantup.com/>`_ 
+and get the latest version of vagrant for your operating system.
 
 **That's it!** You're ready to boot the playdoh VM and access your webapp from
 inside it.
