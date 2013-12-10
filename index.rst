@@ -46,6 +46,7 @@ Contents
 
    monkeypatches
    troubleshooting
+   contact
 
 
 Indices and tables
