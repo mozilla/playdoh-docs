@@ -43,8 +43,6 @@ inside it.
 How Do I Boot and Access My VM?
 -------------------------------
 
-::
-
 If you don't yet have a project directory, you'll want to recursively clone the
 playdoh repository::
 
