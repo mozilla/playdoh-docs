@@ -35,6 +35,7 @@ Contents
 
    getting-started/index
    userguide/index
+   maintenance/index
 
 .. toctree::
    :maxdepth: 1
