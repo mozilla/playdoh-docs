@@ -21,8 +21,8 @@ Database
 
 * `django-multidb-router <https://github.com/jbalogh/django-multidb-router>`_\*:
   Round-robin master/slave db router for Django 1.2.
-* `schematic <https://github.com/jbalogh/schematic>`_\*:
-  Simple database migration tool.
+* `South <http://south.aeracode.org/>`_:
+  Database migration tool.
 
 Deferred Execution (cron, message queues)
 -----------------------------------------
@@ -122,4 +122,3 @@ JavaScript
 
 * `jQuery <http://jquery.com/>`_\*:
   The jQuery JavaScript library.
-

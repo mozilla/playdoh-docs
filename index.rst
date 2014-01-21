@@ -35,6 +35,7 @@ Contents
 
    getting-started/index
    userguide/index
+   maintenance/index
 
 .. toctree::
    :maxdepth: 1
@@ -46,6 +47,7 @@ Contents
 
    monkeypatches
    troubleshooting
+   contact
 
 
 Indices and tables
