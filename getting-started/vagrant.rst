@@ -73,5 +73,5 @@ Note that you'll need to explicitly set the host and port for runserver to
 be accessible from outside the VM.
 
 Learn more about Vagrant by `checking out its docs
-<http://vagrantup.com/docs/getting-started/index.html>`_ and enjoy not caring
+<http://docs.vagrantup.com/v2/getting-started/index.html>`_ and enjoy not caring
 about which libraries are installed on your system anymore!
