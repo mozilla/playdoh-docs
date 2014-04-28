@@ -62,7 +62,7 @@ get a coffee or `watch a YouTube video
 Once your VM is booted, just run ``vagrant ssh`` to ssh into your VM. ``cd``
 into your projects directly and run whatever manage.py commands you like.
 
-playdoh's vagrant setup takes the liberally of forwarding port 8000 (the usual
+playdoh's vagrant setup takes the liberty of forwarding port 8000 (the usual
 Django development port), so if you want to access your web app, do the
 following (after using ``vagrant ssh`` to get into your VM)::
 
