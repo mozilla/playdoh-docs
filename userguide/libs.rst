@@ -27,7 +27,7 @@ Database
 Deferred Execution (cron, message queues)
 -----------------------------------------
 
-* `django-celery <https://github.com/ask/django-celery>`_\*:
+* `django-celery <https://github.com/celery/django-celery>`_\*:
   Celery integration for Django.
 * `django-cronjobs <https://github.com/jsocol/django-cronjobs>`_\*:
   A simple cron-running management command for Django.
